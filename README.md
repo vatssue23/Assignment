@@ -79,3 +79,5 @@ Advance Python Assignment
  
  7 - Updating the Front-end for web app to look more interactive and user friendly.
  
+ 8 - Adding Docker Compose file if there are multiple apps or images required during the app building.
+ 
