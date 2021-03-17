@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container p-2 m-5 bg-white border rounded">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <div class="form-group p-2">
+                {{ form.search_value.label(class="form-control-label") }}
+                {% if form.search_value.errors %}
+                    {{ form.search_value(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.search_value.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.search_value(class="form-control") }}
+                {% endif %}
+            </div>
+            <div class="py-3 px-2 form-group">
+                {{ form.submit(class="btn btn-primary form-control") }}
+            </div>
+        </form>
+        <legend class="row p-2 m-2">
+            <h1>RESULTS</h1>
+            <hr>
+        </legend>
+        <div class="row p-2 m-2">
+            {% if flag %}
+                {% for key in data %}
+                    <a href="{{ url_for('admin.update_employee', employee_id=data[key]['id']) }}">
+                        <h1>{{ data[key]['first_name'] }}  {{ data[key]['last_name'] }}</h1>
+                        <h1>{{ data[key]['email'] }}</h1>
+                    </a>
+                    <hr>
+                {% endfor %}
+            {% else %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

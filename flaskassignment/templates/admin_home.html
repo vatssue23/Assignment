@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container p-2 m-5 bg-white border rounded">
+        {% if current_user.is_authenticated %}
+            <div class="p-2 m-2">
+                <a href="{{ url_for('admin.add_new_employee') }}" class="btn btn-primary p-2 m-1">
+                    Add New Employee
+                </a>
+                <a href="{{ url_for('admin.search_employee') }}" class="btn btn-primary p-2 m-1 ">
+                    Search Employee
+                </a>
+            </div>
+        <div class="row p-2 m-2">
+                {% for user in data %}
+                    {% if user.is_admin %}
+                    {% else %}
+                        <a href="{{ url_for('admin.update_employee', employee_id=user.id) }}">
+                            <h1>{{ user.first_name }}  {{ user.last_name }}</h1>
+                            <h1>{{ user.email }}</h1>
+                        </a>
+                        <hr>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% else %}
+            <h1> Hello, welcome to our page </h1>
+        {% endif %}
+        </div>
+{% endblock %}

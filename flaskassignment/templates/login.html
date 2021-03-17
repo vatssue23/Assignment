@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container p-2 m-5 bg-white border rounded">
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            <div class="form-group p-2">
+                {{ form.email.label(class="form-control-label") }}
+                {% if form.email.errors %}
+                    {{ form.email(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.email.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.email(class="form-control") }}
+                {% endif %}
+            </div>
+             <div class="form-group p-2">
+                {{ form.password.label(class="form-control-label") }}
+                {% if form.password.errors %}
+                    {{ form.password(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.password.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.password(class="form-control") }}
+                {% endif %}
+            </div>
+            <div class="form-group mx-2 form-check">
+                {{ form.remember(class="form-check-input") }}
+                {{ form.remember.label(class="form-check-label") }}
+            </div>
+            <div class="py-3 px-2 form-group">
+                {{ form.submit(class="btn btn-primary form-control") }}
+            </div>
+        </form>
+        <small class="text-muted px-2">
+            Need an account?
+            <a href="{{ url_for('employee.register_employee') }}"> Sign Up</a>
+        </small>
+    </div>
+{% endblock %}
+
